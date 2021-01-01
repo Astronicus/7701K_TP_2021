@@ -1,30 +1,30 @@
 #include "main.h"
 
-int liftVoltage = 127;
-int lowerVoltage = -127;
+int liftVoltage = 100;
+int lowerVoltage = -100;
 
 void liftControl(){
-  leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
-  
+  leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
   bool raiseLiftButton=master.get_digital(DIGITAL_L2);
   bool lowerLiftButton=master.get_digital(DIGITAL_L1);
 
   if(raiseLiftButton && lowerLiftButton){
-    leftLift.move(0);
-    rightLift.move(0);
+    leftLift.move_velocity(0);
+    rightLift.move_velocity(0);
   }
   else if (raiseLiftButton){
-    leftLift.move(liftVoltage);
-    rightLift.move(liftVoltage);
+    leftLift.move_velocity(liftVoltage);
+    rightLift.move_velocity(liftVoltage);
   }
   else if (lowerLiftButton){
-    leftLift.move(lowerVoltage);
-    rightLift.move(lowerVoltage);
+    leftLift.move_velocity(lowerVoltage);
+    rightLift.move_velocity(lowerVoltage);
   }
   else{
-    leftLift.move(0);
-    rightLift.move(0);
+    leftLift.move_velocity(0);
+    rightLift.move_velocity(0);
   }
 
 }
