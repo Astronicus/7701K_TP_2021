@@ -26,21 +26,11 @@ pros::Motor rightLift(rightLift_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_M
 
 
 //3-Wire NOT BEING USED BUT JUST INITIALIZED SO IT'S OK
-#define touchPORTA 10
-#define touchPORTB 11
-#define touchPORTC 12
-
-//V5 Port NOT BEING USED BUT JUST INITIALIZED SO IT'S OK
-#define IMU_PORT 19
-#define OPTICAL_PORT 17
-#define VISION_PORT 18
-#define DISTANCE_PORT 16
+#define touchPORTA 8
+#define touchPORTB 9
+#define touchPORTC 10
 
 //Initalization
 pros::ADIDigitalIn tapA (touchPORTA);
 pros::ADIDigitalIn tapB (touchPORTB);
 pros::ADIDigitalIn tapC (touchPORTC);
-pros::Imu Inertial(IMU_PORT);
-pros::Distance distSensor(DISTANCE_PORT);
-pros::Optical Optical(OPTICAL_PORT);
-pros::Vision Vision(VISION_PORT);

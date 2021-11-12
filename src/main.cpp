@@ -90,6 +90,7 @@ void opcontrol() {
 		driveControl();
 		intakeControl();
 		liftControl();
-		pros::delay(20);
+		clampControl();
+		pros::delay(10);
 	}
 }

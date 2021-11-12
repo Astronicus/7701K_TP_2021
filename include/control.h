@@ -4,5 +4,6 @@
 void driveControl();
 void intakeControl();
 void liftControl();
+void clampControl();
 
 #endif

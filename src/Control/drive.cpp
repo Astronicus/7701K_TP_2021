@@ -28,18 +28,16 @@ void printDriveSpeeds(float fl, float fr, float bl, float br){
 ////////////////////////////////////////////////////////////////////////////////
 
 void driveControl() { //defining tank drive function
-  //Braking
-  if (master.get_digital(DIGITAL_X)) { //When press button X, drive motors brake
-    brakeMode();
-  }
   //Arcade Drive
     //Setting up integers to represent motor speed via joysticks
   float LEFTY= master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   float RIGHTX= master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
+  RIGHTX = RIGHTX * 5/6;
   //severity of turns
-  int turn_multiplier = 0.75;
-  RIGHTX *= turn_multiplier;
+  //int turn_multiplier = 0.75;
+  //RIGHTX *= turn_multiplier;
+
 
   //Deadzones
   if( (LEFTY < 5) && (LEFTY > -5) ){
@@ -62,12 +60,14 @@ void driveControl() { //defining tank drive function
   float backLeftRaw = (LEFTY + RIGHTX); //back left
   float backRightRaw = (LEFTY - RIGHTX); //back right
 
+  float joystickCap = 100;
+  float joystickMod = 127/joystickCap;
 
   //Raw value modifier
-  float frntLftMod = frontLeftRaw * pow((fabs(frontLeftRaw) / 127),1); //(pow(fabs(frntLftRaw),2) / 100)
-  float frntRigMod = frontRightRaw * pow((fabs(frontRightRaw) / 127),1);
-  float bckLftMod =  backLeftRaw  * pow((fabs(backLeftRaw)  / 127),1);
-  float bckRigMod =  backRightRaw  * pow((fabs(backRightRaw)  / 127),1);
+  float frntLftMod = joystickMod * frontLeftRaw * pow((fabs(frontLeftRaw) / 127),1); //(pow(fabs(frntLftRaw),2) / 100)
+  float frntRigMod = joystickMod * frontRightRaw * pow((fabs(frontRightRaw) / 127),1);
+  float bckLftMod =  joystickMod * backLeftRaw  * pow((fabs(backLeftRaw)  / 127),1);
+  float bckRigMod =  joystickMod * backRightRaw  * pow((fabs(backRightRaw)  / 127),1);
 
   frontLeft.move (frntLftMod ); // * driveMultiplier
   frontRight.move(frntRigMod );
