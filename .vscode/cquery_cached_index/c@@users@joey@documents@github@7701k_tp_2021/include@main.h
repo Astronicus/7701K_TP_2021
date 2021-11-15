@@ -39,6 +39,7 @@
 #include "autons.h"
 #include "globalVars.h"
 #include "control.h"
+#include "ARMS/api.h"
 
 /**
  * You should add more #includes here
