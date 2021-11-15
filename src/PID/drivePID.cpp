@@ -14,6 +14,7 @@ void drivePID(double distance, int speed, double msTarget){
   float targetPos{};
   float currentPos{};
   float error{};
+  float prev_error{};
   float integral{};
 
   float kp{};
@@ -23,7 +24,10 @@ void drivePID(double distance, int speed, double msTarget){
   while(driving){
     targetPos = distance;
     currentPos = (backLeft.get_position() + backRight.get_position())/2;
+    prev_error = error;
     error = targetPos - currentPos;
+
+
     kp = error * pConst;
     kd =
 
