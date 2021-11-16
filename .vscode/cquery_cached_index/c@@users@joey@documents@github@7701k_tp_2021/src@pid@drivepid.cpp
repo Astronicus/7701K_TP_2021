@@ -29,7 +29,6 @@ void drivePID(double distance, int speed, double msTarget){
 
 
     kp = error * pConst;
-    kd =
 
 
   }
