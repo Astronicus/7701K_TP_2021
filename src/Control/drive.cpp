@@ -33,11 +33,14 @@ void driveControl() { //defining tank drive function
   float LEFTY= master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   float RIGHTX= master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
-  RIGHTX = RIGHTX * 5/6;
-  //severity of turns
-  //int turn_multiplier = 0.75;
-  //RIGHTX *= turn_multiplier;
+  //Linear multiply
+  LEFTY = LEFTY * 1.27;
+  if(LEFTY>127){
+    LEFTY = 127;
+  }
 
+  //severity of turns
+  //RIGHTX = RIGHTX * 5/6;
 
   //Deadzones
   if( (LEFTY < 5) && (LEFTY > -5) ){
@@ -47,32 +50,19 @@ void driveControl() { //defining tank drive function
     RIGHTX=0;
   }
 
-  //Raw value summation
-  // 2/3 rightX multiplier before
-  /*
-  if(fabs(LEFTY) < 20.0){
-    RIGHTX *= (5.0 / 6);
-  }
-  */
+  double turnConst = 1.5;       // lower = linear, higher = cubic; cannot be 0
+  double turnInput = master.get_analog(ANALOG_RIGHT_X) * (double)105.0 / 127.0;
+  double turnSpeed = turnConst * (pow(turnInput, 3) / 10000 + turnInput / turnConst) / (turnConst + 1);
 
-  float frontLeftRaw = (LEFTY + RIGHTX); //front left
-  float frontRightRaw = (LEFTY - RIGHTX); //front right
-  float backLeftRaw = (LEFTY + RIGHTX); //back left
-  float backRightRaw = (LEFTY - RIGHTX); //back right
+  float frontLeftMod = (LEFTY + turnSpeed); //front left
+  float frontRightMod = (LEFTY - turnSpeed); //front right
+  float backLeftMod = (LEFTY + turnSpeed); //back left
+  float backRightMod = (LEFTY - turnSpeed); //back right
 
-  float joystickCap = 100;
-  float joystickMod = 127/joystickCap;
-
-  //Raw value modifier
-  float frntLftMod = joystickMod * frontLeftRaw * pow((fabs(frontLeftRaw) / 127),1); //(pow(fabs(frntLftRaw),2) / 100)
-  float frntRigMod = joystickMod * frontRightRaw * pow((fabs(frontRightRaw) / 127),1);
-  float bckLftMod =  joystickMod * backLeftRaw  * pow((fabs(backLeftRaw)  / 127),1);
-  float bckRigMod =  joystickMod * backRightRaw  * pow((fabs(backRightRaw)  / 127),1);
-
-  frontLeft.move (frntLftMod ); // * driveMultiplier
-  frontRight.move(frntRigMod );
-  backLeft.move  (bckLftMod  );
-  backRight.move (bckRigMod  );
+  frontLeft.move (frontLeftMod ); // * driveMultiplier
+  frontRight.move(frontRightMod );
+  backLeft.move  (backLeftMod  );
+  backRight.move (backRightMod  );
 
   //printDriveSpeeds(frntLftMod,frntRigMod,bckLftMod,bckRigMod);
 
