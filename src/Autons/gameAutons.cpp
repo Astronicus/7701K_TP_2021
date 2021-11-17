@@ -1,13 +1,24 @@
 #include "main.h"
 
-void exampleAuton1(){
+void redFront(){
+  chassis::move(3,200);
+  chassis::turn(3,150);
+}
+
+void redBack(){
+  chassis::move(3,200);
+  chassis::turn(3,150);
+}
+
+void blueFront(){
+  chassis::move(3,200);
+  chassis::turn(3,150);
+}
+
+void blueBack(){
 
 }
 
-void exampleAuton2(){
-
-}
-
-void exampleAuton3(){
+void doNothing(){
 
 }

@@ -1,4 +1,4 @@
-bin/Control/clamp.cpp.o: src/Control/clamp.cpp include/main.h \
+bin/Autons/gameAutons.cpp.o: src/Autons/gameAutons.cpp include/main.h \
  include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/ext_adi.h include/pros/adi.h \
  include/pros/adi.h include/pros/gps.h include/pros/imu.h \

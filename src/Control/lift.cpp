@@ -1,7 +1,7 @@
 #include "main.h"
 
-int liftVoltage = 100;
-int lowerVoltage = -100;
+int liftVelocity = 100;
+int lowerVelocity = -100;
 
 void liftControl(){
   leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -15,12 +15,12 @@ void liftControl(){
     rightLift.move_velocity(0);
   }
   else if (raiseLiftButton){
-    leftLift.move_velocity(liftVoltage);
-    rightLift.move_velocity(liftVoltage);
+    leftLift.move_velocity(liftVelocity);
+    rightLift.move_velocity(liftVelocity);
   }
   else if (lowerLiftButton){
-    leftLift.move_velocity(lowerVoltage);
-    rightLift.move_velocity(lowerVoltage);
+    leftLift.move_velocity(lowerVelocity);
+    rightLift.move_velocity(lowerVelocity);
   }
   else{
     leftLift.move_velocity(0);

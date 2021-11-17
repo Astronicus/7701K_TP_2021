@@ -1,4 +1,4 @@
-bin/PID/drivePID.cpp.o: src/PID/drivePID.cpp include/main.h include/api.h \
+bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/pros/adi.h include/pros/colors.h include/pros/distance.h \
  include/pros/ext_adi.h include/pros/adi.h include/pros/adi.h \
  include/pros/gps.h include/pros/imu.h include/pros/llemu.h \

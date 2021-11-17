@@ -4,8 +4,8 @@
 // Drivetrain configuration constants
 namespace chassis {
 // negative numbers mean reversed motor
-#define LEFT_MOTORS 1, 2
-#define RIGHT_MOTORS -3, -4
+#define LEFT_MOTORS 5, 14
+#define RIGHT_MOTORS -19, -16
 #define GEARSET 200 // rpm of chassis motors
 
 #define DISTANCE_CONSTANT 273 // ticks per distance unit
