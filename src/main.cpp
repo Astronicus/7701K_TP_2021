@@ -23,6 +23,7 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
 
@@ -64,6 +65,29 @@ void competition_initialize() {
 
 int auton_num = 0;
 void autonomous() {
+	chassis::init({5,14},{16,19}, //leftdrive and rightdrive motors
+								200, //gearset
+								71, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
+								8.0, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
+								8, //settle time
+								3, //settle linear
+								1, //settle angular
+								2, 2, //regular/arc slew
+								0, //imu port (none)
+								{0,0,0}, //encoder ports
+								0, //expander port
+								5 //joystick threshhold
+	);
+	pid::init(false, //debug output
+						.3,0,.5, //pid values moving
+						.8,0,3, //pid values for turning
+						8,0,0, //linear point constants
+						50,0,0,//angular point constants
+						.05, //arc kp
+						0, //dif kp
+						3 //min error
+	 );
+
 	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
@@ -82,6 +106,8 @@ void autonomous() {
 					case -3: doNothing(); break;
 	        default: break;
 				}
+
+
 }
 
 /**
@@ -99,6 +125,7 @@ void autonomous() {
  */
 void opcontrol() {
 	while (true) {
+		//autonTest();
 		driveControl();
 		intakeControl();
 		liftControl();

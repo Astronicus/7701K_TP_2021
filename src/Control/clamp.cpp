@@ -21,3 +21,10 @@ void clampControl(){
     clampMotor.move_velocity(0);
   }
 }
+
+void clampRotate(float degrees, float velocity){
+  float angleMod = 1.0;
+  clampMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  clampMotor.move_relative(angleMod*degrees, velocity);
+  pros::delay(100);
+}

@@ -10,6 +10,7 @@ void redBack();
 void blueFront();
 void blueBack();
 void doNothing();
+void autonTest();
 
 
 

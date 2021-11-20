@@ -5,5 +5,6 @@ void driveControl();
 void intakeControl();
 void liftControl();
 void clampControl();
+void clampRotate(float degrees, float vel);
 
 #endif
