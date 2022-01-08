@@ -12,40 +12,6 @@
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-Os",
-            "-g",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Wno-psabi",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "-funwind-tables",
-            "--std=gnu++17",
-            "-o",
-            "bin/io.cpp.o",
-            "src/io.cpp"
-        ],
-        "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
-        "file": "src/io.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7-a+simd/softfp",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/backward",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
-            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
-            "-iquote./include",
             "-iquote./include/PID/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
@@ -80,6 +46,74 @@
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-Os",
+            "-g",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Wno-psabi",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "-funwind-tables",
+            "--std=gnu++17",
+            "-o",
+            "bin/io.cpp.o",
+            "src/io.cpp"
+        ],
+        "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
+        "file": "src/io.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7-a+simd/softfp",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/backward",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/Control/",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-Os",
+            "-g",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Wno-psabi",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "-funwind-tables",
+            "--std=gnu++17",
+            "-o",
+            "bin/Control/lift.cpp.o",
+            "src/Control/lift.cpp"
+        ],
+        "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
+        "file": "src/Control/lift.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7-a+simd/softfp",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/backward",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
             "-iquote./include/Autons/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
@@ -95,11 +129,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "/var/folders/wm/xnlw31g14tngylfyb0pfl75c0000gn/T/tmpl7x3d_yf/Autons/autonSelector.cpp.o",
-            "src/Autons/autonSelector.cpp"
+            "bin/Autons/autonFunctions.cpp.o",
+            "src/Autons/autonFunctions.cpp"
         ],
         "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
-        "file": "src/Autons/autonSelector.cpp"
+        "file": "src/Autons/autonFunctions.cpp"
     },
     {
         "arguments": [
@@ -163,11 +197,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/Control/lift.cpp.o",
-            "src/Control/lift.cpp"
+            "bin/Control/intake.cpp.o",
+            "src/Control/intake.cpp"
         ],
         "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
-        "file": "src/Control/lift.cpp"
+        "file": "src/Control/intake.cpp"
     },
     {
         "arguments": [
@@ -182,7 +216,7 @@
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/Control/",
+            "-iquote./include/Autons/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -197,11 +231,45 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/Control/clamp.cpp.o",
-            "src/Control/clamp.cpp"
+            "bin/Autons/autonSelector.cpp.o",
+            "src/Autons/autonSelector.cpp"
         ],
         "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
-        "file": "src/Control/clamp.cpp"
+        "file": "src/Autons/autonSelector.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7-a+simd/softfp",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/backward",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/Autons/",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-Os",
+            "-g",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Wno-psabi",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "-funwind-tables",
+            "--std=gnu++17",
+            "-o",
+            "bin/Autons/gameAutons.cpp.o",
+            "src/Autons/gameAutons.cpp"
+        ],
+        "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
+        "file": "src/Autons/gameAutons.cpp"
     },
     {
         "arguments": [
@@ -250,7 +318,7 @@
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/include-fixed",
             "-isystem/usr/local/Cellar/arm-gcc-bin@10/10.3-2021.07_1/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/Autons/",
+            "-iquote./include/Control/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -265,10 +333,10 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/Autons/gameAutons.cpp.o",
-            "src/Autons/gameAutons.cpp"
+            "bin/Control/hook.cpp.o",
+            "src/Control/hook.cpp"
         ],
         "directory": "/Users/zhuhanshao/Desktop/7701K_TP_2021",
-        "file": "src/Autons/gameAutons.cpp"
+        "file": "src/Control/hook.cpp"
     }
 ]

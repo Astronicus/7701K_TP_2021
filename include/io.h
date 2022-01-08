@@ -5,8 +5,8 @@ extern pros::Motor frontLeft;
 extern pros::Motor frontRight;
 extern pros::Motor backLeft;
 extern pros::Motor backRight;
-extern pros::Motor clampMotor;
-extern pros::Motor conveyorMotor;
+extern pros::Motor hookMotor;
+extern pros::Motor backFourBarMotor;
 extern pros::Motor leftLift;
 extern pros::Motor rightLift;
 

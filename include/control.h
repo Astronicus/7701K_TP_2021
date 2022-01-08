@@ -2,9 +2,10 @@
 #define CONTROL_H
 
 void driveControl();
-void intakeControl();
+void backFourBarControl();
 void liftControl();
-void clampControl();
-void clampRotate(float degrees, float vel);
+void hookControl();
+
+void hookRotate(float degrees, float vel);
 
 #endif

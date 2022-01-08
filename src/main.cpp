@@ -22,12 +22,37 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+float tpu = 66.8;
 void initialize() {
-
-	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
-
-	pros::lcd::register_btn1_cb(on_center_button);
+	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
+								200, //gearset
+								tpu, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
+								8.0, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
+								8, //settle time
+								3, //settle linear
+								1, //settle angular
+								2, 2, //regular/arc slew
+								0, //imu port (none)
+								{0,0,0}, //encoder ports
+								0, //expander port
+								5 //joystick threshhold
+	);
+	pid::init(false, //debug output
+						.3,0,.5, //pid values moving
+						.8,0,3, //pid values for turning
+						4,0,20, //linear point constants
+						100,0,100,//angular point constants
+						.05, //arc kp
+						0, //dif kp
+						3 //min error
+	 );
+	 pros::delay(4000);
+	 odom::init(false,0,0,
+							tpu, //ticks per unit travel
+							tpu,
+							false,
+							4); //exit error inches
+	selector::init();
 }
 
 /**
@@ -46,9 +71,8 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
+
 void competition_initialize() {
-	//setupSelector();
-	selector::init();
 }
 
 /**
@@ -65,29 +89,6 @@ void competition_initialize() {
 
 int auton_num = 0;
 void autonomous() {
-	chassis::init({5,14},{16,19}, //leftdrive and rightdrive motors
-								200, //gearset
-								71, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
-								8.0, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
-								8, //settle time
-								3, //settle linear
-								1, //settle angular
-								2, 2, //regular/arc slew
-								0, //imu port (none)
-								{0,0,0}, //encoder ports
-								0, //expander port
-								5 //joystick threshhold
-	);
-	pid::init(false, //debug output
-						.3,0,.5, //pid values moving
-						.8,0,3, //pid values for turning
-						8,0,0, //linear point constants
-						50,0,0,//angular point constants
-						.05, //arc kp
-						0, //dif kp
-						3 //min error
-	 );
-
 	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
@@ -100,10 +101,12 @@ void autonomous() {
 		switch(selector::auton){
 	        case 1: redFront(); break;
 	        case 2: redBack(); break;
-	        case 3: doNothing(); break;
+	        case 3: autonTest1(); break;
+					case 4: doNothing(); break;
 					case -1: blueFront(); break;
 					case -2: blueBack(); break;
-					case -3: doNothing(); break;
+					case -3: autonTest2(); break;
+					case -4: doNothing(); break;
 	        default: break;
 				}
 
@@ -124,12 +127,24 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	int counter=0;
 	while (true) {
-		//autonTest();
 		driveControl();
-		intakeControl();
-		liftControl();
-		clampControl();
-		pros::delay(10);
+		hookControl();
+		backFourBarControl();
+		hookControl();
+
+		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+		if(runAuton && !pros::competition::is_connected()){
+			 autonomous();
+		}
+
+		counter++;
+		if (counter%5==0){
+			printf("%f\n",chassis::rightMotors->getPosition());
+		}
+		
+		pros::delay(20);
 	}
+
 }
