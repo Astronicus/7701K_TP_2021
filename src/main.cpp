@@ -22,8 +22,9 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-float tpu = 66.8;
+//float tpu = 51.6;
 void initialize() {
+	/*
 	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
 								200, //gearset
 								tpu, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
@@ -46,13 +47,15 @@ void initialize() {
 						0, //dif kp
 						3 //min error
 	 );
-	 pros::delay(4000);
-	 odom::init(false,0,0,
+	 pros::delay(2000);
+	 /*odom::init(false,0,0,
 							tpu, //ticks per unit travel
 							tpu,
 							false,
 							4); //exit error inches
+	 pros::delay(2000);
 	selector::init();
+	*/
 }
 
 /**
@@ -87,8 +90,12 @@ void competition_initialize() {
  * from where it left off.
  */
 
-int auton_num = 0;
+
 void autonomous() {
+	backBarDown(100);
+	moveRel(-3,175);
+	backBarUp(100);
+	moveRel(1.8,175);
 	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
@@ -97,7 +104,7 @@ void autonomous() {
         default: break;
     }
 		*/
-
+		/*
 		switch(selector::auton){
 	        case 1: redFront(); break;
 	        case 2: redBack(); break;
@@ -109,7 +116,7 @@ void autonomous() {
 					case -4: doNothing(); break;
 	        default: break;
 				}
-
+				*/
 
 }
 
@@ -126,24 +133,25 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
 void opcontrol() {
-	int counter=0;
+	//int counter=0;
 	while (true) {
 		driveControl();
 		hookControl();
 		backFourBarControl();
-		hookControl();
+		liftControl();
 
-		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+		/*bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
 		if(runAuton && !pros::competition::is_connected()){
 			 autonomous();
 		}
+		*/
+		//counter++;
+		//if (counter%5==0){
+		//	printf("%f\n",chassis::rightMotors->getPosition());
+		//}
 
-		counter++;
-		if (counter%5==0){
-			printf("%f\n",chassis::rightMotors->getPosition());
-		}
-		
 		pros::delay(20);
 	}
 

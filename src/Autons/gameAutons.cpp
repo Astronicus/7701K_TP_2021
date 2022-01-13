@@ -1,9 +1,14 @@
 #include "main.h"
 
 void redFront(){
-  odom::move({48,0},100);
-  hookRotate(0.7,100);
-  odom::move({10,0},70);
+  //odom::move({48,0},100);
+  //hookRotate(0.7,100);
+  //odom::move({10,0},70);
+  backBarDown(100);
+  chassis::move(-54,100);
+  backBarUp(100);
+  chassis::move(30,100);
+
 
 }
 
