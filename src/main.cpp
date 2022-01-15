@@ -24,6 +24,7 @@ void on_center_button() {
  */
 //float tpu = 51.6;
 void initialize() {
+	pros::lcd::initialize();
 	/*
 	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
 								200, //gearset

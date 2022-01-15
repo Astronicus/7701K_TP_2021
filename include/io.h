@@ -15,4 +15,6 @@ extern pros::ADIDigitalIn tapA;
 extern pros::ADIDigitalIn tapB;
 extern pros::ADIDigitalIn tapC;
 
+extern pros::ADIDigitalOut piston;
+
 #endif
