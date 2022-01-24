@@ -13,14 +13,34 @@ void backBarDown(float velocity){
 }
 void backBarUp(float velocity){
   backFourBarMotor.move_relative(50, velocity);
-  pros::delay(1500);
+  //pros::delay(750);
 }
 void moveRel(float distance, float velocity){
-  distance = distance * 360;
-  frontLeft.move_relative(distance, velocity ); // * driveMultiplier
-  frontRight.move_relative(distance, velocity);
-  backLeft.move_relative(distance, velocity);
-  backRight.move_relative(distance, velocity);
-  pros::delay(1900);
+  frontLeft.tare_position();
+  frontRight.tare_position();
+  backLeft.tare_position();
+  backRight.tare_position();
 
+  frontLeft.move_absolute(distance, velocity ); // * driveMultiplier
+  frontRight.move_absolute(distance, velocity);
+  backLeft.move_absolute(distance, velocity);
+  backRight.move_absolute(distance, velocity);
+
+  while (!((frontLeft.get_position() < (distance+0.3)) && (frontLeft.get_position() > distance-0.3))) {
+  pros::delay(2);
+}
+
+  frontLeft.tare_position();
+  frontRight.tare_position();
+  backLeft.tare_position();
+  backRight.tare_position();
+
+
+}
+void armMove(float distance, float velocity){
+  leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  leftLift.move_relative(distance, velocity);
+  rightLift.move_relative(distance, velocity);
+  pros::delay(50);
 }

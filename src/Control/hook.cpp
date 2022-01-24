@@ -5,12 +5,15 @@ void hookControl(){
   bool openHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
 
   if (closeHook){
-    piston.set_value(true);
+    piston1.set_value(false);
+    piston2.set_value(false);
     pros::lcd::print(1,"true pressed");
   }
   else if(openHook){
-    piston.set_value(false);
+    piston1.set_value(true);
+    piston2.set_value(true);
     pros::lcd::print(1,"false pressed");
+
   }
 
 

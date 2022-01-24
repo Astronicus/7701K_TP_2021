@@ -25,6 +25,8 @@ void on_center_button() {
 //float tpu = 51.6;
 void initialize() {
 	pros::lcd::initialize();
+	piston1.set_value(false);
+	piston2.set_value(false);
 	/*
 	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
 								200, //gearset
@@ -93,10 +95,12 @@ void competition_initialize() {
 
 
 void autonomous() {
-	backBarDown(100);
-	moveRel(-3,175);
+	backBarDown(200);
+	moveRel(-3.6,125);
+	pros::delay(500);
 	backBarUp(100);
-	moveRel(1.8,175);
+	pros::delay(1000);
+	moveRel(2.5,150);
 	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
