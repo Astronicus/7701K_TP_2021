@@ -5,7 +5,7 @@
 #define frntRghtMtr_PORT 16
 #define bckLftMtr_PORT 19
 #define bckRghtMtr_PORT 15
-#define hook_PORT 4
+#define h_PORT 9
 #define backFourBar_PORT 20
 #define leftLift_PORT 14
 #define rightLift_PORT 18
@@ -19,7 +19,7 @@ pros::Motor frontLeft(frntLftMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_M
 pros::Motor frontRight(frntRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor backLeft(bckLftMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor backRight(bckRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_ROTATIONS);
-//pros::Motor hookMotor(hook_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);
+pros::Motor hMotor(h_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor backFourBarMotor(backFourBar_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor leftLift(leftLift_PORT, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor rightLift(rightLift_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);

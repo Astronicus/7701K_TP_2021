@@ -1,8 +1,8 @@
-bin/Control/lift.cpp.o: src/Control/lift.cpp include/main.h include/api.h \
- include/pros/adi.h include/pros/colors.h include/pros/distance.h \
- include/pros/ext_adi.h include/pros/adi.h include/pros/adi.h \
- include/pros/gps.h include/pros/imu.h include/pros/llemu.h \
- include/display/lvgl.h include/display/lv_version.h \
+bin/Autons/gameAutons.cpp.o: src/Autons/gameAutons.cpp include/main.h \
+ include/api.h include/pros/adi.h include/pros/colors.h \
+ include/pros/distance.h include/pros/ext_adi.h include/pros/adi.h \
+ include/pros/adi.h include/pros/gps.h include/pros/imu.h \
+ include/pros/llemu.h include/display/lvgl.h include/display/lv_version.h \
  include/display/lv_misc/lv_log.h include/display/lv_conf.h \
  include/display/lv_conf_checker.h include/display/lv_misc/lv_task.h \
  include/display/lv_misc/lv_mem.h include/display/lv_misc/lv_log.h \

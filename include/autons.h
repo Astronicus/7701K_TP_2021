@@ -6,6 +6,7 @@
 void setupSelector();
 
 void redFront();
+void skillsRun();
 void redBack();
 void blueFront();
 void blueBack();

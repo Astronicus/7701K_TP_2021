@@ -22,19 +22,21 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-//float tpu = 51.6;
+float tpu = 51.6;
+float tpuTurn = 8.5;
 void initialize() {
 	pros::lcd::initialize();
 	piston1.set_value(false);
 	piston2.set_value(false);
+
 	/*
 	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
 								200, //gearset
 								tpu, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
-								8.0, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
+								tpuTurn, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
 								8, //settle time
 								3, //settle linear
-								1, //settle angular
+								3, //settle angular
 								2, 2, //regular/arc slew
 								0, //imu port (none)
 								{0,0,0}, //encoder ports
@@ -43,22 +45,22 @@ void initialize() {
 	);
 	pid::init(false, //debug output
 						.3,0,.5, //pid values moving
-						.8,0,3, //pid values for turning
+						1,0,3, //pid values for turning
 						4,0,20, //linear point constants
 						100,0,100,//angular point constants
 						.05, //arc kp
 						0, //dif kp
 						3 //min error
 	 );
-	 pros::delay(2000);
-	 /*odom::init(false,0,0,
+	 odom::init(false,0,0,
 							tpu, //ticks per unit travel
 							tpu,
 							false,
 							4); //exit error inches
-	 pros::delay(2000);
-	selector::init();
-	*/
+	 pros::delay(3000);
+	 selector::init();
+	 */
+
 }
 
 /**
@@ -95,12 +97,21 @@ void competition_initialize() {
 
 
 void autonomous() {
-	backBarDown(200);
-	moveRel(-3.6,125);
+	/*backBarDown(200);
+	moveRel(-3,125);
 	pros::delay(500);
 	backBarUp(100);
 	pros::delay(1000);
 	moveRel(2.5,150);
+	*/
+	backBarDown(200);
+	moveRel(-2.05,200);
+	pros::delay(300);
+	backBarUp(100);
+	pros::delay(700);
+	moveRel(1.8,100);
+
+
 	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
@@ -109,19 +120,6 @@ void autonomous() {
         default: break;
     }
 		*/
-		/*
-		switch(selector::auton){
-	        case 1: redFront(); break;
-	        case 2: redBack(); break;
-	        case 3: autonTest1(); break;
-					case 4: doNothing(); break;
-					case -1: blueFront(); break;
-					case -2: blueBack(); break;
-					case -3: autonTest2(); break;
-					case -4: doNothing(); break;
-	        default: break;
-				}
-				*/
 
 }
 
@@ -140,22 +138,24 @@ void autonomous() {
  */
 
 void opcontrol() {
-	//int counter=0;
+	int counter=0;
 	while (true) {
 		driveControl();
+		//driveControlARMS();
 		hookControl();
 		backFourBarControl();
 		liftControl();
+		driveControlH();
 
-		/*bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
 		if(runAuton && !pros::competition::is_connected()){
 			 autonomous();
 		}
-		*/
-		//counter++;
-		//if (counter%5==0){
-		//	printf("%f\n",chassis::rightMotors->getPosition());
-		//}
+
+		/*counter++;
+		if (counter%5==0){
+		printf("%f\n",chassis::rightMotors->getPosition());
+	}*/
 
 		pros::delay(20);
 	}

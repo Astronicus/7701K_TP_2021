@@ -25,7 +25,7 @@ void driveControl() { //split arcade drive
   float RIGHTX= master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
   //Linear multiply so forward/backward maxes at 100
-  LEFTY = LEFTY * 1.27;
+  LEFTY = LEFTY * 1.10;
   if(LEFTY>127){
     LEFTY = 127;
   }
@@ -42,7 +42,7 @@ void driveControl() { //split arcade drive
   }
 
   double turnConst = 1.5;       // lower = linear, higher = cubic; cannot be 0
-  double turnInput = master.get_analog(ANALOG_RIGHT_X) * (double)105.0 / 127.0;
+  double turnInput = master.get_analog(ANALOG_RIGHT_X) * (double)100 / 127.0;
   double turnSpeed = turnConst * (pow(turnInput, 3) / 10000 + turnInput / turnConst) / (turnConst + 1);
 
   float frontLeftMod = (LEFTY + turnSpeed); //front left
@@ -56,3 +56,27 @@ void driveControl() { //split arcade drive
   backRight.move (backRightMod  );
 
 } // Op Drive Ends//
+void driveControlARMS(){
+  double forBack = master.get_analog(ANALOG_LEFT_Y) * (double)100/127;
+
+  double turnConst = 1.5;       // lower = linear, higher = cubic; cannot be 0
+  double turnInput = master.get_analog(ANALOG_RIGHT_X) * (double)100 / 127.0;
+  double turnSpeed = turnConst * (pow(turnInput, 3) / 10000 + turnInput / turnConst) / (turnConst + 1);
+
+  chassis::arcade(forBack, turnSpeed);
+}
+void driveControlH(){
+  double goVel = 100;
+  bool goLeft = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+  bool goRight = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+  if(goLeft){
+    hMotor.move_velocity(-goVel);
+  }
+  else if(goRight){
+    hMotor.move_velocity(goVel);
+  }
+  else{
+    hMotor.move(0);
+  }
+
+}
