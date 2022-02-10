@@ -1,43 +1,37 @@
 #include "main.h"
 
-
 void brakeMode(){
   frontLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   frontRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   backLeft.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   backRight.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
-
-////////////////////////////////////////////////////////////////////////////////
-
 void coastMode(){
   frontLeft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   frontRight.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   backLeft.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
   backRight.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
-
 void printDriveSpeeds(float fl, float fr, float bl, float br){
   pros::lcd::print(0,"FL: %f",fl);
   pros::lcd::print(1,"FR: %f",fr);
   pros::lcd::print(2,"BL: %f",bl);
   pros::lcd::print(3,"BR: %f",br);
 }
-
-
 ////////////////////////////////////////////////////////////////////////////////
 
-void driveControl() { //defining tank drive function
-  //Arcade Drive
-    //Setting up integers to represent motor speed via joysticks
+void driveControl() { //split arcade drive
   float LEFTY= master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   float RIGHTX= master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
 
-  RIGHTX = RIGHTX * 5/6;
-  //severity of turns
-  //int turn_multiplier = 0.75;
-  //RIGHTX *= turn_multiplier;
+  //Linear multiply so forward/backward maxes at 100
+  LEFTY = LEFTY * 1.10;
+  if(LEFTY>127){
+    LEFTY = 127;
+  }
 
+  //Linear multiply for turns (no longer used)
+  //RIGHTX = RIGHTX * 5/6;
 
   //Deadzones
   if( (LEFTY < 5) && (LEFTY > -5) ){
@@ -47,36 +41,34 @@ void driveControl() { //defining tank drive function
     RIGHTX=0;
   }
 
-  //Raw value summation
-  // 2/3 rightX multiplier before
-  /*
-  if(fabs(LEFTY) < 20.0){
-    RIGHTX *= (5.0 / 6);
-  }
-  */
+  double turnConst = 1.5;       // lower = linear, higher = cubic; cannot be 0
+  double turnInput = master.get_analog(ANALOG_RIGHT_X) * (double)100 / 127.0;
+  double turnSpeed = turnConst * (pow(turnInput, 3) / 10000 + turnInput / turnConst) / (turnConst + 1);
 
-  float frontLeftRaw = (LEFTY + RIGHTX); //front left
-  float frontRightRaw = (LEFTY - RIGHTX); //front right
-  float backLeftRaw = (LEFTY + RIGHTX); //back left
-  float backRightRaw = (LEFTY - RIGHTX); //back right
+  float frontLeftMod = (LEFTY + turnSpeed); //front left
+  float frontRightMod = (LEFTY - turnSpeed); //front right
+  float backLeftMod = (LEFTY + turnSpeed); //back left
+  float backRightMod = (LEFTY - turnSpeed); //back right
 
-  float joystickCap = 100;
-  float joystickMod = 127/joystickCap;
-
-  //Raw value modifier
-  float frntLftMod = joystickMod * frontLeftRaw * pow((fabs(frontLeftRaw) / 127),1); //(pow(fabs(frntLftRaw),2) / 100)
-  float frntRigMod = joystickMod * frontRightRaw * pow((fabs(frontRightRaw) / 127),1);
-  float bckLftMod =  joystickMod * backLeftRaw  * pow((fabs(backLeftRaw)  / 127),1);
-  float bckRigMod =  joystickMod * backRightRaw  * pow((fabs(backRightRaw)  / 127),1);
-
-  frontLeft.move (frntLftMod ); // * driveMultiplier
-  frontRight.move(frntRigMod );
-  backLeft.move  (bckLftMod  );
-  backRight.move (bckRigMod  );
-
-  //printDriveSpeeds(frntLftMod,frntRigMod,bckLftMod,bckRigMod);
-
-  //https://www.vexforum.com/t/slowing-down-v5-motors/51787/2
-  //https://www.vexforum.com/t/optimizing-exponential-drive/73719
+  frontLeft.move (frontLeftMod ); // * driveMultiplier
+  frontRight.move(frontRightMod );
+  backLeft.move  (backLeftMod  );
+  backRight.move (backRightMod  );
 
 } // Op Drive Ends//
+
+
+void driveControlH(){
+  double goVel = 100;
+  bool goLeft = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+  bool goRight = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+  if(goLeft){
+    hMotor.move_velocity(-goVel);
+  }
+  else if(goRight){
+    hMotor.move_velocity(goVel);
+  }
+  else{
+    hMotor.move(0);
+  }
+}

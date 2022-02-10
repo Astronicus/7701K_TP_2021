@@ -18,5 +18,6 @@ void backBarDown(float velocity);
 void moveRel(float distance, float velocity);
 void armMove(float distance, float velocity);
 void turnRel(float distance, float velocity);
+void turnPID(double degrees, int maxVoltage);
 
 #endif

@@ -141,7 +141,6 @@ void opcontrol() {
 	int counter=0;
 	while (true) {
 		driveControl();
-		//driveControlARMS();
 		hookControl();
 		backFourBarControl();
 		liftControl();
