@@ -5,14 +5,13 @@
 //src/Autons/gameAuton.cpp
 void setupSelector();
 
-void redFront();
+void leftAuton();
+void rightAuton();
+void leftWPAuton();
+void rightWPAuton();
 void skillsRun();
-void redBack();
-void blueFront();
-void blueBack();
 void doNothing();
-void autonTest1();
-void autonTest2();
+void neutralDistAuton();
 
 
 

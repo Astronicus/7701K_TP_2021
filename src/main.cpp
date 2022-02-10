@@ -28,39 +28,7 @@ void initialize() {
 	pros::lcd::initialize();
 	piston1.set_value(false);
 	piston2.set_value(false);
-
-	/*
-	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
-								200, //gearset
-								tpu, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
-								tpuTurn, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
-								8, //settle time
-								3, //settle linear
-								3, //settle angular
-								2, 2, //regular/arc slew
-								0, //imu port (none)
-								{0,0,0}, //encoder ports
-								0, //expander port
-								5 //joystick threshhold
-	);
-	pid::init(false, //debug output
-						.3,0,.5, //pid values moving
-						1,0,3, //pid values for turning
-						4,0,20, //linear point constants
-						100,0,100,//angular point constants
-						.05, //arc kp
-						0, //dif kp
-						3 //min error
-	 );
-	 odom::init(false,0,0,
-							tpu, //ticks per unit travel
-							tpu,
-							false,
-							4); //exit error inches
-	 pros::delay(3000);
-	 selector::init();
-	 */
-
+	setupSelector();
 }
 
 /**
@@ -95,32 +63,18 @@ void competition_initialize() {
  * from where it left off.
  */
 
-
+unsigned int auton_num{};
 void autonomous() {
-	/*backBarDown(200);
-	moveRel(-3,125);
-	pros::delay(500);
-	backBarUp(100);
-	pros::delay(1000);
-	moveRel(2.5,150);
-	*/
-	backBarDown(200);
-	moveRel(-2.05,200);
-	pros::delay(300);
-	backBarUp(100);
-	pros::delay(700);
-	moveRel(1.8,100);
-
-
-	/* switch(auton_num){
-        //Other
-        case 1: exampleAuton1(); break;
-        case 2: exampleAuton2(); break;
-        case 3: exampleAuton3(); break;
-        default: break;
-    }
-		*/
-
+		switch(auton_num){
+	        case 0: leftAuton(); break;
+	        case 1: rightAuton(); break;
+	        case 2: leftWPAuton(); break;
+					case 3: rightWPAuton(); break;
+					case 4: skillsRun(); break;
+					case 5: neutralDistAuton(); break;
+					case 6: doNothing(); break;
+	        default: leftAuton(); break;
+	    }
 }
 
 /**

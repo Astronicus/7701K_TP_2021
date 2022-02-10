@@ -19,5 +19,6 @@ void moveRel(float distance, float velocity);
 void armMove(float distance, float velocity);
 void turnRel(float distance, float velocity);
 void turnPID(double degrees, int maxVoltage);
+void drivePID(double distance, int maxVoltage);
 
 #endif

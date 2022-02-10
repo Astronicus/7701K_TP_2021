@@ -72,9 +72,9 @@ void turnPID(double degrees, int maxVoltage){
   double sp = degrees * 1.5; //set point
 
   bool driving = true; //driving true until condition met
-  float pConst = 0.2; //set constant values
+  float pConst = 0.35; //set constant values
   float iConst = 0.0;
-  float dConst = 0.005;
+  float dConst = 0.0010;
 
   double targetPos{}; //initialize all with 0
   double currentPos{};
@@ -108,8 +108,8 @@ void turnPID(double degrees, int maxVoltage){
     if(abs(giveVoltage) > maxVoltage){
       giveVoltage = maxVoltage * abs(giveVoltage)/giveVoltage; //keep the same sign
     }
-    else if (abs(giveVoltage)<20){
-      giveVoltage = 25 * abs(giveVoltage)/giveVoltage;
+    else if (abs(giveVoltage)<35){
+      giveVoltage = 35 * abs(giveVoltage)/giveVoltage;
     }
 
     frontLeft.move(-giveVoltage);

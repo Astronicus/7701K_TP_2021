@@ -1,51 +1,44 @@
 #include "main.h"
 
-void redFront(){
-  /*backBarDown(200);
-  chassis::move(-62,175);
-  backBarUp(100);
-  chassis::move(40,100);
-  */
+void leftAuton(){
+  backBarDown(200);
+	moveRel(-2.05,125);
+	pros::delay(500);
+	backBarUp(100);
+	pros::delay(1000);
+	moveRel(1.8,150);
+}
 
-  backBarDown(100);
-  moveRel(-3,50);
-  pros::delay(1000);
+void rightAuton(){
+  backBarDown(200);
+  moveRel(-2.05,125);
+  pros::delay(500);
   backBarUp(100);
   pros::delay(1000);
-  turnRel(360,50);
+  moveRel(1.8,150);
+}
 
+void leftWPAuton(){
 
 }
+
+void rightWPAuton(){
+
+}
+
 void skillsRun(){
   backBarDown(200);
-  chassis::move(-108,50);
-  pros::delay(1000);
-  chassis::turn(90,75);
-  pros::delay(1000);
-  chassis::move(44,50);
 }
-
-void redBack(){
-  chassis::move(54,100);
-  chassis::turn(90,100);
-}
-
-void blueFront(){
-
-}
-
-void blueBack(){
-
-}
-
-void autonTest1(){
-
-}
-void autonTest2(){
-
-}
-
 
 void doNothing(){
 
+}
+
+void neutralDistAuton(){
+  backBarDown(200);
+	moveRel(-2.05,125);
+	pros::delay(500);
+	backBarUp(100);
+	pros::delay(1000);
+	moveRel(1.8,150);
 }
