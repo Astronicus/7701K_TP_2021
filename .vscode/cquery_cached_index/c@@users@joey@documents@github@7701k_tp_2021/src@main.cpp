@@ -22,11 +22,45 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+float tpu = 51.6;
+float tpuTurn = 8.5;
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+	piston1.set_value(false);
+	piston2.set_value(false);
 
-	pros::lcd::register_btn1_cb(on_center_button);
+	/*
+	chassis::init({17,19},{15,16}, //leftdrive and rightdrive motors
+								200, //gearset
+								tpu, //ticks per unit travel CHANGE THIS TO GO FARTHER, UNIT OF TRAVEL SHOULD BE INCHES
+								tpuTurn, //ticks per degree CHANGE THIS TO TURN MORE/LESS, UNIT SHOULD BE DEGREES TURN
+								8, //settle time
+								3, //settle linear
+								3, //settle angular
+								2, 2, //regular/arc slew
+								0, //imu port (none)
+								{0,0,0}, //encoder ports
+								0, //expander port
+								5 //joystick threshhold
+	);
+	pid::init(false, //debug output
+						.3,0,.5, //pid values moving
+						1,0,3, //pid values for turning
+						4,0,20, //linear point constants
+						100,0,100,//angular point constants
+						.05, //arc kp
+						0, //dif kp
+						3 //min error
+	 );
+	 odom::init(false,0,0,
+							tpu, //ticks per unit travel
+							tpu,
+							false,
+							4); //exit error inches
+	 pros::delay(3000);
+	 selector::init();
+	 */
+
 }
 
 /**
@@ -45,8 +79,8 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
+
 void competition_initialize() {
-	setupSelector();
 }
 
 /**
@@ -61,15 +95,32 @@ void competition_initialize() {
  * from where it left off.
  */
 
-int auton_num = 0;
+
 void autonomous() {
-	switch(auton_num){
+	/*backBarDown(200);
+	moveRel(-3,125);
+	pros::delay(500);
+	backBarUp(100);
+	pros::delay(1000);
+	moveRel(2.5,150);
+	*/
+	backBarDown(200);
+	moveRel(-2.05,200);
+	pros::delay(300);
+	backBarUp(100);
+	pros::delay(700);
+	moveRel(1.8,100);
+
+
+	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
         case 2: exampleAuton2(); break;
         case 3: exampleAuton3(); break;
         default: break;
     }
+		*/
+
 }
 
 /**
@@ -85,12 +136,28 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
 void opcontrol() {
+	int counter=0;
 	while (true) {
 		driveControl();
-		intakeControl();
+		//driveControlARMS();
+		hookControl();
+		backFourBarControl();
 		liftControl();
-		clampControl();
-		pros::delay(10);
+		driveControlH();
+
+		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+		if(runAuton && !pros::competition::is_connected()){
+			 autonomous();
+		}
+
+		/*counter++;
+		if (counter%5==0){
+		printf("%f\n",chassis::rightMotors->getPosition());
+	}*/
+
+		pros::delay(20);
 	}
+
 }

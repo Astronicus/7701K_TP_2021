@@ -4,11 +4,11 @@
 // Drivetrain configuration constants
 namespace chassis {
 // negative numbers mean reversed motor
-#define LEFT_MOTORS 1, 2
-#define RIGHT_MOTORS -3, -4
+#define LEFT_MOTORS 17,19
+#define RIGHT_MOTORS 15,16
 #define GEARSET 200 // rpm of chassis motors
 
-#define DISTANCE_CONSTANT 273 // ticks per distance unit
+#define DISTANCE_CONSTANT 51.6 // ticks per distance unit
 #define DEGREE_CONSTANT 2.3   // ticks per degree
 
 // chassis settling constants
@@ -64,7 +64,7 @@ namespace pid {
 // Auton selector configuration constants
 namespace selector {
 // Names of autonomi, up to 10
-#define AUTONS "Front", "Back", "Do Nothing"
+#define AUTONS "Front", "Back", "TestAuton", "skillsRun"
 #define HUE 360   // Color of theme from 0-359(H part of HSV)
 #define DEFAULT 1 // Default auton numbers
 } // namespace selector

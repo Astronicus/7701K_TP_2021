@@ -1,23 +1,25 @@
 #include "main.h"
 
-int intakeVoltage = 127;
-int outtakeVoltage = -127;
+int intakeSpeed = 125;
+int outtakeSpeed = -200;
 
-void intakeControl(){
-  bool intakeButton=master.get_digital(DIGITAL_R2);
-  bool outtakeButton=master.get_digital(DIGITAL_R1);
+void backFourBarControl(){
+  backFourBarMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+  bool intakeButton=master.get_digital(DIGITAL_R1);
+  bool outtakeButton=master.get_digital(DIGITAL_R2);
 
   if(intakeButton && outtakeButton){
-    conveyorMotor.move(0);
+    backFourBarMotor.move(0);
   }
   else if (intakeButton){
-    conveyorMotor.move(intakeVoltage);
+    backFourBarMotor.move_velocity(intakeSpeed);
   }
   else if (outtakeButton){
-    conveyorMotor.move(outtakeVoltage);
+    backFourBarMotor.move_velocity(outtakeSpeed);
   }
   else{
-    conveyorMotor.move(0);
+    backFourBarMotor.move(0);
   }
 
 }

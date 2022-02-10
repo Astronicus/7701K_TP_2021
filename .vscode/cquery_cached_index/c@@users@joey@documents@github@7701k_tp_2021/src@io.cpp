@@ -1,25 +1,31 @@
 #include "main.h"
 //Motor Setup
 
-#define frntLftMtr_PORT 5
-#define frntRghtMtr_PORT 19
-#define bckLftMtr_PORT 14
-#define bckRghtMtr_PORT 16
-#define clampMtr_PORT 3
-#define conveyorMtr_PORT 4
-#define leftLift_PORT 1
-#define rightLift_PORT 2
+#define frntLftMtr_PORT 17
+#define frntRghtMtr_PORT 16
+#define bckLftMtr_PORT 19
+#define bckRghtMtr_PORT 15
+#define h_PORT 9
+#define backFourBar_PORT 20
+#define leftLift_PORT 14
+#define rightLift_PORT 18
+
+#define piston_PORT 'A'
+#define piston_PORT2 'B'
 
 pros::Controller master (CONTROLLER_MASTER);
 
-pros::Motor frontLeft(frntLftMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor frontRight(frntRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor backLeft(bckLftMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor backRight(bckRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor clampMotor(clampMtr_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);
-pros::Motor conveyorMotor(conveyorMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_ROTATIONS);
+pros::Motor frontLeft(frntLftMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor frontRight(frntRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor backLeft(bckLftMtr_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor backRight(bckRghtMtr_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor hMotor(h_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);
+pros::Motor backFourBarMotor(backFourBar_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor leftLift(leftLift_PORT, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_ROTATIONS);
 pros::Motor rightLift(rightLift_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_ROTATIONS);
+
+pros::ADIDigitalOut piston1 (piston_PORT);
+pros::ADIDigitalOut piston2 (piston_PORT2);
 
 //Sensor Setup
 
