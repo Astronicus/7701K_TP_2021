@@ -18,6 +18,6 @@ void clampControl(){
     clampMotor.move_velocity(-clampVelocity);
   }
   else{
-    clampMotor.move_relative(0, 0);
+    clampMotor.move_velocity(0);
   }
 }

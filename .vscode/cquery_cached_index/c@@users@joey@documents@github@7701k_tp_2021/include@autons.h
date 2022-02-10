@@ -5,9 +5,11 @@
 //src/Autons/gameAuton.cpp
 void setupSelector();
 
-void exampleAuton1();
-void exampleAuton2();
-void exampleAuton3();
+void redFront();
+void redBack();
+void blueFront();
+void blueBack();
+void doNothing();
 
 
 

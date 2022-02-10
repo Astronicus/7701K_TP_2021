@@ -46,7 +46,8 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	setupSelector();
+	//setupSelector();
+	selector::init();
 }
 
 /**
@@ -63,13 +64,24 @@ void competition_initialize() {
 
 int auton_num = 0;
 void autonomous() {
-	switch(auton_num){
+	/* switch(auton_num){
         //Other
         case 1: exampleAuton1(); break;
         case 2: exampleAuton2(); break;
         case 3: exampleAuton3(); break;
         default: break;
     }
+		*/
+
+		switch(selector::auton){
+	        case 1: redFront(); break;
+	        case 2: redBack(); break;
+	        case 3: doNothing(); break;
+					case -1: blueFront(); break;
+					case -2: blueBack(); break;
+					case -3: doNothing(); break;
+	        default: break;
+				}
 }
 
 /**

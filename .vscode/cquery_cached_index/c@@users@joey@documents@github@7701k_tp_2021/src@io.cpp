@@ -5,7 +5,7 @@
 #define frntRghtMtr_PORT 19
 #define bckLftMtr_PORT 14
 #define bckRghtMtr_PORT 16
-#define clampMtr_PORT 3
+#define clampMtr_PORT 15
 #define conveyorMtr_PORT 4
 #define leftLift_PORT 1
 #define rightLift_PORT 2
