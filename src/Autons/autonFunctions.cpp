@@ -13,7 +13,7 @@ void backBarDown(float velocity){
   pros::delay(0);
 }
 void backBarUp(float velocity){
-  backFourBarMotor.move_relative(50, velocity);
+  backFourBarMotor.move_relative(150, velocity);
   //pros::delay(750);
 }
 void moveRel(float distance, float velocity){
@@ -38,7 +38,7 @@ void moveRel(float distance, float velocity){
 }
 
 void turnRel(float distance, float velocity){
-  distance*=1.5*360;
+  distance*=(-2.93);
   frontLeft.tare_position();
   frontRight.tare_position();
   backLeft.tare_position();

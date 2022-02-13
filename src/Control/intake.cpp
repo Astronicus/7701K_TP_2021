@@ -1,6 +1,6 @@
 #include "main.h"
 
-int intakeSpeed = 125;
+int intakeSpeed = 175;
 int outtakeSpeed = -200;
 
 void backFourBarControl(){
@@ -10,7 +10,7 @@ void backFourBarControl(){
   bool outtakeButton=master.get_digital(DIGITAL_R2);
 
   if(intakeButton && outtakeButton){
-    backFourBarMotor.move(0);
+    backFourBarMotor.move_velocity(0);
   }
   else if (intakeButton){
     backFourBarMotor.move_velocity(intakeSpeed);
@@ -19,7 +19,7 @@ void backFourBarControl(){
     backFourBarMotor.move_velocity(outtakeSpeed);
   }
   else{
-    backFourBarMotor.move(0);
+    backFourBarMotor.move_velocity(0);
   }
 
 }

@@ -12,6 +12,9 @@
 
 #define piston_PORT 'A'
 #define piston_PORT2 'B'
+#define tapC_PORT 'E'
+#define tapA_PORT 'C'
+#define tapB_PORT 'D'
 
 pros::Controller master (CONTROLLER_MASTER);
 
@@ -26,17 +29,8 @@ pros::Motor rightLift(rightLift_PORT, pros::E_MOTOR_GEARSET_36, false, pros::E_M
 
 pros::ADIDigitalOut piston1 (piston_PORT);
 pros::ADIDigitalOut piston2 (piston_PORT2);
+pros::ADIDigitalIn tapA (tapA_PORT);
+pros::ADIDigitalIn tapB (tapB_PORT);
+pros::ADIDigitalIn tapC (tapC_PORT);
 
 //Sensor Setup
-
-
-
-//3-Wire NOT BEING USED BUT JUST INITIALIZED SO IT'S OK
-#define touchPORTA 8
-#define touchPORTB 9
-#define touchPORTC 10
-
-//Initalization
-pros::ADIDigitalIn tapA (touchPORTA);
-pros::ADIDigitalIn tapB (touchPORTB);
-pros::ADIDigitalIn tapC (touchPORTC);

@@ -26,9 +26,8 @@ float tpu = 51.6;
 float tpuTurn = 8.5;
 void initialize() {
 	pros::lcd::initialize();
-	piston1.set_value(false);
-	piston2.set_value(false);
 	setupSelector();
+
 }
 
 /**
@@ -49,6 +48,7 @@ void disabled() {}
  */
 
 void competition_initialize() {
+	//setupSelector();
 }
 
 /**
@@ -65,6 +65,7 @@ void competition_initialize() {
 
 unsigned int auton_num{};
 void autonomous() {
+	//skillsRun();
 		switch(auton_num){
 	        case 0: leftAuton(); break;
 	        case 1: rightAuton(); break;
@@ -75,6 +76,9 @@ void autonomous() {
 					case 6: doNothing(); break;
 	        default: leftAuton(); break;
 	    }
+		//leftAuton();
+
+
 }
 
 /**
@@ -92,6 +96,7 @@ void autonomous() {
  */
 
 void opcontrol() {
+	pros::lcd::set_text(2, "In opcontrol");
 	int counter=0;
 	while (true) {
 		driveControl();
