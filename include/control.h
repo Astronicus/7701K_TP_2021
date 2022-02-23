@@ -9,7 +9,7 @@ void hookControl();
 void backBarUp();
 void backBarDown();
 void driveControlARMS();
-void driveControlH();
+void frontClawControl();
 
 //auton methods
 void hookRotate(float degrees, float vel);
@@ -20,5 +20,7 @@ void armMove(float distance, float velocity);
 void turnRel(float distance, float velocity);
 void turnPID(double degrees, int maxVoltage);
 void drivePID(double distance, int maxVoltage);
+
+void update_position();
 
 #endif

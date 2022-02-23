@@ -56,19 +56,3 @@ void driveControl() { //split arcade drive
   backRight.move (backRightMod  );
 
 } // Op Drive Ends//
-
-
-void driveControlH(){
-  double goVel = 100;
-  bool goLeft = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
-  bool goRight = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-  if(goLeft){
-    hMotor.move_velocity(-goVel);
-  }
-  else if(goRight){
-    hMotor.move_velocity(goVel);
-  }
-  else{
-    hMotor.move(0);
-  }
-}

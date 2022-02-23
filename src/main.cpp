@@ -103,9 +103,10 @@ void opcontrol() {
 		hookControl();
 		backFourBarControl();
 		liftControl();
-		driveControlH();
+		frontClawControl();
+		update_position();
 
-		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 		if(runAuton && !pros::competition::is_connected()){
 			 autonomous();
 		}

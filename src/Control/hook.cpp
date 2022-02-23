@@ -13,10 +13,18 @@ void hookControl(){
     piston1.set_value(true);
     piston2.set_value(true);
     pros::lcd::print(1,"false pressed");
-
   }
-
-
+}
+void frontClawControl(){
+  backFourBarMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  bool closeHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+  bool openHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
+  if (closeHook){
+    frontClawMotor.move_velocity(150);
+  }
+  else if(openHook){
+    frontClawMotor.move_velocity(-150);
+  }
 }
 
 /*int hookVelocity = 150;
