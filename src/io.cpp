@@ -5,7 +5,7 @@
 #define frntRghtMtr_PORT 11
 #define bckLftMtr_PORT 9
 #define bckRghtMtr_PORT 4
-#define frontClaw_PORT 12
+#define frontClaw_PORT 14
 #define backFourBar_PORT 2
 #define leftLift_PORT 19
 #define rightLift_PORT 5

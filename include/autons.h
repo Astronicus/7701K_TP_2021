@@ -10,8 +10,10 @@ void rightAuton();
 void leftWPAuton();
 void rightWPAuton();
 void skillsRun();
-void doNothing();
+void skillsRun2();
+void skillsRun3();
 void neutralDistAuton();
+void doNothing();
 
 
 

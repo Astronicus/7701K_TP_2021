@@ -8,7 +8,7 @@ void setupSelector(){
   //Auton Selector
 
   unsigned int count{};
-  std::string autonNames[7]= {"Left","Right","LeftWinP","RightWinP","Skills","NeutralDist","DoNothing"};
+  std::string autonNames[9]= {"Left","Right","LeftWinP","RightWinP","Skills1","Skills2","Skills3","NeutralDist","doNothing"};
   count=0; //defined in main.h
   bool runSelector = true;
 

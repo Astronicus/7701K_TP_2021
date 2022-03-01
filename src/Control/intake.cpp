@@ -4,7 +4,7 @@ int intakeSpeed = 175;
 int outtakeSpeed = -200;
 
 void backFourBarControl(){
-  backFourBarMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  backFourBarMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
   bool intakeButton=master.get_digital(DIGITAL_R1);
   bool outtakeButton=master.get_digital(DIGITAL_R2);

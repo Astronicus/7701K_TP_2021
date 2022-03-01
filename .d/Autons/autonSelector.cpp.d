@@ -1,5 +1,5 @@
-bin/Control/drive.cpp.o: src/Control/drive.cpp include/main.h \
- include/api.h include/pros/adi.h include/pros/colors.h \
+bin/Autons/autonSelector.cpp.o: src/Autons/autonSelector.cpp \
+ include/main.h include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/ext_adi.h include/pros/adi.h \
  include/pros/adi.h include/pros/gps.h include/pros/imu.h \
  include/pros/llemu.h include/display/lvgl.h include/display/lv_version.h \

@@ -16,15 +16,26 @@ void hookControl(){
   }
 }
 void frontClawControl(){
-  backFourBarMotor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  frontClawMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   bool closeHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
   bool openHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
   if (closeHook){
-    frontClawMotor.move_velocity(150);
+    frontClawMotor.move_velocity(50);
   }
   else if(openHook){
-    frontClawMotor.move_velocity(-150);
+    frontClawMotor.move_velocity(-50);
   }
+  else{
+    frontClawMotor.move_velocity(0);
+  }
+}
+void openPistons(){
+  piston1.set_value(true);
+  piston2.set_value(true);
+}
+void closePistons(){
+  piston1.set_value(false);
+  piston2.set_value(false);
 }
 
 /*int hookVelocity = 150;

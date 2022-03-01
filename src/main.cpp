@@ -72,13 +72,12 @@ void autonomous() {
 	        case 2: leftWPAuton(); break;
 					case 3: rightWPAuton(); break;
 					case 4: skillsRun(); break;
-					case 5: neutralDistAuton(); break;
-					case 6: doNothing(); break;
+					case 5: skillsRun2(); break;
+					case 6: skillsRun3(); break;
+					case 7: neutralDistAuton(); break;
+					case 8: doNothing(); break;
 	        default: leftAuton(); break;
 	    }
-		//leftAuton();
-
-
 }
 
 /**
@@ -104,7 +103,7 @@ void opcontrol() {
 		backFourBarControl();
 		liftControl();
 		frontClawControl();
-		update_position();
+		//update_position90();
 
 		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 		if(runAuton && !pros::competition::is_connected()){
