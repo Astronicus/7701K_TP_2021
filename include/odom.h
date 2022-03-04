@@ -6,5 +6,6 @@ void move_drive(double vel, double vol);
 void turn_imu2(double degrees, double kb, double msTarget);
 void turn_imu(double degrees, double kb);
 void setWhichPos(int setPos);
+void curvy_odom(double max_vel, double xf, double yf, double zone, double zone_constant);
 
 #endif

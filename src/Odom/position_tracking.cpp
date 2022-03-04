@@ -13,6 +13,7 @@ double global_orientation0 = 0;
 double global_orientation90 = pi/2;
 double global_orientation180 = pi;
 double global_orientation270 = 3*pi/2;
+double global_orientation = 0;
 
 double orientation_degrees;
 
@@ -41,6 +42,7 @@ void update_position90(){
     //convert to degrees (change in angle from 90degree on cordinate plane)
     delta_angle = ((Inertial.get_rotation() * -1.0 * (pi/180.0)) + pi/2) - global_orientation90; //  ((right_arc - left_arc) / robot_width)
     global_orientation90 += delta_angle;
+    global_orientation = global_orientation90;
     // if(delta_angle == 0){
     delta_x = cos(global_orientation90) * center_arc;
     delta_y = sin(global_orientation90) * center_arc;
@@ -76,6 +78,7 @@ void update_position180(){
     //convert to degrees (change in angle from 90degree on cordinate plane)
     delta_angle = ((Inertial.get_rotation() * -1.0 * (pi/180.0)) + pi) - global_orientation180; //  ((right_arc - left_arc) / robot_width)
     global_orientation180 += delta_angle;
+    global_orientation = global_orientation180;
     // if(delta_angle == 0){
     delta_x = cos(global_orientation180) * center_arc;
     delta_y = sin(global_orientation180) * center_arc;
@@ -111,6 +114,7 @@ void update_position270(){
     //convert to degrees (change in angle from 90degree on cordinate plane)
     delta_angle = ((Inertial.get_rotation() * -1.0 * (pi/180.0)) + 3*pi/2) - global_orientation270; //  ((right_arc - left_arc) / robot_width)
     global_orientation270 += delta_angle;
+    global_orientation = global_orientation270;
     // if(delta_angle == 0){
     delta_x = cos(global_orientation270) * center_arc;
     delta_y = sin(global_orientation270) * center_arc;
@@ -146,6 +150,7 @@ void update_position0(){
     //convert to degrees (change in angle from 90degree on cordinate plane)
     delta_angle = (Inertial.get_rotation() * -1.0 * (pi/180.0)) - global_orientation0; //  ((right_arc - left_arc) / robot_width)
     global_orientation0 += delta_angle;
+    global_orientation = global_orientation0;
     // if(delta_angle == 0){
     delta_x = cos(global_orientation0) * center_arc;
     delta_y = sin(global_orientation0) * center_arc;
@@ -180,6 +185,12 @@ void setWhichPos(int setPos){
         case 180: whichPos = 180;
         case 270: whichPos = 270;
         default: whichPos = -1;
-    }
+        }
 
+  switch(setPos){
+        case 0: global_orientation = global_orientation0;
+        case 90: global_orientation = global_orientation90;
+        case 180: global_orientation = global_orientation180;
+        case 270: global_orientation = global_orientation270;
+}
 }

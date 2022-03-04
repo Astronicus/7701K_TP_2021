@@ -15,6 +15,9 @@ extern double global_orientation90;
 extern double global_orientation180;
 extern double global_orientation270;
 
+extern double global_orientation; //in rad
+extern double orientation_degrees;
+
 int count = 0;
 
 void reset_tracker_wheels(){
@@ -152,7 +155,7 @@ void turn_imu(double degrees, double kb) {
   reset_tracker_wheels(); //uses backLeft and backRight
   double target;
   target = ((imuSign * Inertial.get_rotation()) - degrees) * TURN_CONSTANT;
-  double init_error = target - (imuSign * Inertial.get_rotation());
+  double init_error = target - (Inertial.get_rotation() * imuSign);
   double P_Gain = 1.2;
   double I_Gain = 0.000;
   double D_Gain = 0;
@@ -171,7 +174,7 @@ void turn_imu(double degrees, double kb) {
   double brake = 0;
 
   while (true) {
-    error = target - (imuSign * Inertial.get_rotation());
+    error = target - (global_orientation);
     error_sum += error;
 
     derror = (error - prev_error) / .01;
@@ -246,7 +249,7 @@ void turn_imu(double degrees, double kb) {
 void turn_to_pos(double x, double y, double kb){
   reset_tracker_wheels();
   double target = atan2((y - global_y) , (x - global_x)) * (180/pi);
-  double init_error = target - ((-1 * Inertial.get_rotation()) - whichPos);
+  double init_error = target - ((imuSign * Inertial.get_rotation()) - whichPos);
   double p_constant = 1.2;
   double i_constant = 0.000;
   double d_constant = 0;
@@ -335,5 +338,149 @@ void turn_to_pos(double x, double y, double kb){
 
     pros::delay(10);
   }
+}
 
+void curvy_odom(double max_vel, double xf, double yf, double zone, double zone_constant) {
+
+  double error;
+  double init_error = sqrt(pow((global_x - xf), 2) + pow((global_y - yf), 2));
+  double total_error;
+  double desired_angle = atan2((yf - global_y) , (xf - global_x));
+  double init_angle_error = desired_angle - global_orientation;
+  double angle_error;
+  double correction;
+  double vel_target;
+  double vel_error;
+  double final_vol;
+  double arrived = 0;
+
+  double kB = 1;
+  double kp = .2;
+  double kd = 0;
+  double ki = .002;
+
+  double kpa = .02;
+
+  double kc = .2;
+
+  double vel_kp;
+  double i_counter;
+
+  double flip = 1;
+
+  double init_length = fabs(backLeft.get_position());
+  double length = 0;
+
+  while (true) {
+    length = fabs(fabs(backLeft.get_position()) - init_length);
+    error = sqrt(pow((global_x - xf), 2) + pow((global_y - yf), 2));
+    total_error += error;
+    desired_angle = atan2((yf - global_y) , (xf - global_x));
+
+
+    if (fabs(error) > (fabs(init_error) * .75)) {
+      kp = 0;
+      ki = 0.00002;
+      kd = 0;
+
+    }
+    else{
+      kp = .3;
+      ki = 0;
+      kd = .2;
+      if (fabs(error) < 184.4) {
+        ki = 0;
+        i_counter ++;
+        if(i_counter == 1){
+          total_error = 0;
+        }
+      }
+    }
+    angle_error = desired_angle - global_orientation;
+    if(fabs(init_angle_error) > pi){
+      if(fabs(desired_angle) / desired_angle == 1){
+        desired_angle -= 2*pi;
+        angle_error = desired_angle - global_orientation;
+      }
+      else{
+        desired_angle += 2* pi;
+        angle_error = desired_angle - global_orientation;
+      }
+    }
+    vel_target = flip * ((error * kp) + (total_error * ki));
+    final_vol = kB * vel_target;
+     if (fabs(final_vol) > max_vel) {
+      final_vol = fabs(final_vol) / final_vol * max_vel;
+    }
+
+
+    if(fabs(length) < zone){
+      correction = zone_constant;
+      if(flip == 1){
+        if(fabs(angle_error) / angle_error == 1){
+          move_drive(final_vol * correction, final_vol);
+        }
+        if(fabs(angle_error) / angle_error == -1){
+          move_drive(final_vol, final_vol * correction);
+        }
+      }
+      else{
+        if(fabs(angle_error) / angle_error == -1){
+          move_drive(final_vol * correction, final_vol);
+        }
+        if(fabs(angle_error) / angle_error == 1){
+          move_drive(final_vol, final_vol * correction);
+        }
+      }
+    }
+    else{
+
+      correction = .8 - (kpa * fabs(angle_error * (180 / pi)));
+      if (correction < .1){
+        correction = .1;
+      }
+
+        if(flip == 1){
+          if(fabs(angle_error) / angle_error == 1){
+            move_drive(final_vol * correction, final_vol);
+          }
+          if(fabs(angle_error) / angle_error == -1){
+            move_drive(final_vol, final_vol * correction);
+          }
+          if(fabs(angle_error) / angle_error == 0){
+            move_drive(final_vol, final_vol);
+          }
+        }
+        else{
+          if(fabs(angle_error) / angle_error == -1){
+            move_drive(final_vol * correction, final_vol);
+          }
+          if(fabs(angle_error) / angle_error == 1){
+            move_drive(final_vol, final_vol * correction);
+          }
+          if(fabs(angle_error) / angle_error == 0){
+            move_drive(final_vol, final_vol);
+          }
+        }
+    }
+
+    if (error < 50) {
+      arrived++;
+    }
+    if (arrived == 1) {
+      move_drive(0, 0);
+      break;
+    }
+
+    switch(whichPos){
+          case 0: update_position0();
+          case 90: update_position90();
+          case 180: update_position180();
+          case 270: update_position270();
+          default: update_position90();
+      }
+    count++;
+    printf("%f", desired_angle);
+    printf("\n");
+  }
 }
