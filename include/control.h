@@ -28,5 +28,6 @@ void barWhileMoveRel(float distance1, float distance2, float velocity1, float ve
 void update_position90();
 void update_position180();
 void update_position270();
+void update_position0();
 
 #endif

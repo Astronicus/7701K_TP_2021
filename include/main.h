@@ -39,6 +39,7 @@
 #include "autons.h"
 #include "globalVars.h"
 #include "control.h"
+#include "odom.h"
 
 /**
  * You should add more #includes here

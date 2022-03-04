@@ -74,7 +74,7 @@ bin/Odom/odom_functions.cpp.o: src/Odom/odom_functions.cpp include/main.h \
  include/pros/rotation.hpp include/pros/rotation.h include/pros/rtos.hpp \
  include/pros/rtos.h include/pros/screen.hpp include/pros/screen.h \
  include/pros/vision.hpp include/pros/vision.h include/io.h \
- include/autons.h include/globalVars.h include/control.h
+ include/autons.h include/globalVars.h include/control.h include/odom.h
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -227,3 +227,4 @@ include/io.h:
 include/autons.h:
 include/globalVars.h:
 include/control.h:
+include/odom.h:

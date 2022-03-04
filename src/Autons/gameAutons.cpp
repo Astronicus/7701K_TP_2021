@@ -1,7 +1,10 @@
 #include "main.h"
 
 void leftAuton(){
-  backBarDown(200);
+  setWhichPos(90);
+  turn_imu2(180, 1, 3000);
+
+  /*backBarDown(200);
   pros::delay(100);
 	barWhileMoveRel(-2.05,-0.45,200,200);
   pros::delay(250);
@@ -9,7 +12,7 @@ void leftAuton(){
 	pros::delay(150);
 	moveRel(2.1,200);
   turnRel(180,100);
-
+  */
 
 }
 

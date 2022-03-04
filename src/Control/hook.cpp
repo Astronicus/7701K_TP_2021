@@ -20,10 +20,10 @@ void frontClawControl(){
   bool closeHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
   bool openHook = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
   if (closeHook){
-    frontClawMotor.move_velocity(50);
+    frontClawMotor.move_velocity(-100);
   }
   else if(openHook){
-    frontClawMotor.move_velocity(-50);
+    frontClawMotor.move_velocity(100);
   }
   else{
     frontClawMotor.move_velocity(0);
