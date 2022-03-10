@@ -103,7 +103,7 @@ void opcontrol() {
 		backFourBarControl();
 		liftControl();
 		frontClawControl();
-		update_position90();
+		//update_position90();
 
 		bool runAuton = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 		if(runAuton && !pros::competition::is_connected()){

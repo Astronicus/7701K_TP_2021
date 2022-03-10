@@ -1,8 +1,39 @@
 #include "main.h"
 
 void leftAuton(){
-  setWhichPos(90);
-  turn_imu2(180, 1, 3000);
+  setWhichPos(180);
+  setPos(0,0.5);
+  backBarDown(200);
+  curvy_odom(100,1.5,0.5,0,0);
+  delay_update(750);
+  backBarUp(200);
+  delay_update(750);
+  curvy_odom(100,0.75,0.5,0,0);
+  turn_to_pos(1.3,2.5,1);
+  armMove(-1.0,100);
+  delay_update(750);
+  curvy_odom(100,1.3,2.5,0,0);
+  delay_update(500);
+  closePistons();
+  delay_update(200);
+  armMove(0.65,100);
+  delay_update(2000);
+  turn_to_pos(3,4.2, 1);
+  curvy_odom(100,3,4.2,0,0);
+  turnAbs_imu(90,1);
+
+
+  printf("Done");
+
+
+  //curvy_odom(100,1,2.5,0,0);
+  //turn_imu2(90,1,3000);
+  //curvy_odom(100,1.25,3.5,0,0);
+  //turn_imu2(180,1,3000);
+  //turn_imu2(90,1,3000);
+  //curvy_odom(100,0,0,0,0);
+  //turn_imu2(135,1,3000);
+
 
   /*backBarDown(200);
   pros::delay(100);

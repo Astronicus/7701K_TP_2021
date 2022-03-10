@@ -43,7 +43,7 @@ void setupSelector(){
     counter++;
   	pros::delay(20);
 
-    if(counter>250){
+    if(counter>10){ //250 for regular select time
       auton_num=count;
       runSelector = false;
       break;

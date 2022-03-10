@@ -31,9 +31,15 @@ double delta_y = 0;
 
 int counter = 0;
 int whichPos = -1;
+bool updateSlow = true;
 
 
 //tracking function run inside loop
+void setPos(double x, double y){
+  global_x = x;
+  global_y = y;
+}
+
 void update_position90(){
     right_arc = backRight.get_position()  - prev_right_pos;
     left_arc = backLeft.get_position() - prev_left_pos;
@@ -60,7 +66,7 @@ void update_position90(){
     counter++;
     orientation_degrees = (global_orientation90 * 180) / pi;
 
-    if(counter%5==0){
+    if(counter%6==0 && updateSlow){
     printf( "%f" , global_x);
     printf(", ");
     printf( "%f" , global_y);
@@ -68,6 +74,14 @@ void update_position90(){
     printf( "%f" , orientation_degrees);
     printf("\n");
   }
+    else if(counter%6000==0){
+      printf( "%f" , global_x);
+      printf(", ");
+      printf( "%f" , global_y);
+      printf(", ");
+      printf( "%f" , orientation_degrees);
+      printf("\n");
+    }
 }
 
 void update_position180(){
@@ -96,7 +110,7 @@ void update_position180(){
     counter++;
     orientation_degrees = (global_orientation180 * 180) / pi;
 
-    if(counter%5==0){
+    if(counter%10==0 && updateSlow){
     printf( "%f" , global_x);
     printf(", ");
     printf( "%f" , global_y);
@@ -104,6 +118,14 @@ void update_position180(){
     printf( "%f" , orientation_degrees);
     printf("\n");
   }
+    else if(counter%6000==0){
+      printf( "%f" , global_x);
+      printf(", ");
+      printf( "%f" , global_y);
+      printf(", ");
+      printf( "%f" , orientation_degrees);
+      printf("\n");
+    }
 }
 
 void update_position270(){
@@ -132,7 +154,7 @@ void update_position270(){
     counter++;
     orientation_degrees = (global_orientation270 * 180) / pi;
 
-    if(counter%5==0){
+    if(counter%6==0 && updateSlow){
     printf( "%f" , global_x);
     printf(", ");
     printf( "%f" , global_y);
@@ -140,6 +162,14 @@ void update_position270(){
     printf( "%f" , orientation_degrees);
     printf("\n");
   }
+    else if(counter%6000==0){
+      printf( "%f" , global_x);
+      printf(", ");
+      printf( "%f" , global_y);
+      printf(", ");
+      printf( "%f" , orientation_degrees);
+      printf("\n");
+    }
 }
 
 void update_position0(){
@@ -168,7 +198,7 @@ void update_position0(){
     counter++;
     orientation_degrees = (global_orientation0 * 180) / pi;
 
-    if(counter%5==0){
+    if(counter%10==0 && updateSlow){
     printf( "%f" , global_x);
     printf(", ");
     printf( "%f" , global_y);
@@ -176,21 +206,48 @@ void update_position0(){
     printf( "%f" , orientation_degrees);
     printf("\n");
   }
+    else if(counter%1500==0){
+      printf( "%f" , global_x);
+      printf(", ");
+      printf( "%f" , global_y);
+      printf(", ");
+      printf( "%f" , orientation_degrees);
+      printf("\n");
+    }
 }
 
 void setWhichPos(int setPos){
   switch(setPos){
-        case 0: whichPos = 0;
-        case 90: whichPos = 90;
-        case 180: whichPos = 180;
-        case 270: whichPos = 270;
-        default: whichPos = -1;
+        case 0: whichPos = 0; break;
+        case 90: whichPos = 90; break;
+        case 180: whichPos = 180; break;
+        case 270: whichPos = 270; break;
+        default: printf("WHICHPOS FAILED!!! \nWHICHPOS FAILED!!! \nWHICHPOS FAILED!!!\n"); break;
         }
 
   switch(setPos){
-        case 0: global_orientation = global_orientation0;
-        case 90: global_orientation = global_orientation90;
-        case 180: global_orientation = global_orientation180;
-        case 270: global_orientation = global_orientation270;
-}
+        case 0:
+            global_orientation = global_orientation0;
+            update_position0();
+            printf("WHICHPOS EQUALS: %f\n",whichPos);
+            break;
+        case 90:
+            global_orientation = global_orientation90;
+            update_position90();
+            printf("WHICHPOS EQUALS: %f\n",whichPos);
+            break;
+        case 180:
+            global_orientation = global_orientation180;
+            update_position180();
+            printf("WHICHPOS EQUALS: %f\n",whichPos);
+            break;
+        case 270:
+            global_orientation = global_orientation270;
+            update_position270();
+            printf("WHICHPOS EQUALS: %f\n",whichPos);
+            break;
+        default:
+          printf("WHICHPOS FAILED\n WHICHPOS FAILED\n WHICHPOS FAILED \n");
+      }
+
 }
